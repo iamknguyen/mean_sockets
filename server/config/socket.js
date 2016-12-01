@@ -10,18 +10,19 @@ module.exports = (server)=>{
         const location = url.parse(ws.upgradeReq.url, true);
         ws.on('message', function incoming(message) {
             console.log('received: ', message, typeof message);
-            var convertedData = JSON.parse(message);
+            
 
-            // do stuff with the converted data
+            /* Parse the JSON data and do whatever you want with it */
+            var convertedData = JSON.parse(message);
             console.log("Data from client: ", convertedData)
 
-            // send stuff back
-            ws.send(JSON.stringify(data))
+            /** send stuff back */ 
+            ws.send(JSON.stringify(convertedData))
 
-            //helpers.storeMessage(ws, JSON.parse(message));
-            //ws.send(message);
+            /* below will cause an error IF the client expects a JSON object */
+            // ws.send('something');
+
         });
-        // below will cause an error because we expect a JSON object
-        //ws.send('something');
+        
     });
 }

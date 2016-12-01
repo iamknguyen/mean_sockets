@@ -1,7 +1,7 @@
 
 
 angular.module('app.Home',[])
-.controller('HomeController',function($scope, $location, Services){
+.controller('HomeController',function($scope, $location){
     console.log("You're in Home with location ", $location.path());
 
     $scope.user = {
@@ -14,13 +14,12 @@ angular.module('app.Home',[])
     socket.onopen = (event)=>{
         console.log("Socket is Open!")
     }
-    
-    Services.socket.onmessage = (event)=>{
+    socket.onmessage = (event)=>{
         let data = JSON.parse(event.data);
         console.log('incoming', data);
     }
     
-    const sendMessage = () =>{
+    $scope.sendMessage = () =>{
         socket.send(JSON.stringify($scope.user));
     }
    

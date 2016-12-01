@@ -5,7 +5,7 @@ angular.module("chatApp",['app.Home','ui.router'])
 
     $stateProvider
         .state('Home', {
-            url: '/Home',
+            name: '/Home',
             templateUrl: '/home/home.html',
             controller: 'HomeController'
         })
